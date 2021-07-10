@@ -1,19 +1,17 @@
 import React from 'react'
 import TodoItem from './TodoItem'
 
-const TodoContianer = (props) => {
+const TodoContainer = (props) => {
 
     const showTodos = () => {
         return props.todos.map(todo => <TodoItem key={todo.id} todo={todo} />)
     }
 
     return (
-        <div>
-            <ul>
+            <ul className="todo-list">
               {showTodos()}
             </ul>
-        </div>
     )
 }
 
-export default TodoContianer
+export default TodoContainer

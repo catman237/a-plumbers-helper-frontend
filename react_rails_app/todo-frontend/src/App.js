@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
-import TodoContianer from './components/TodoContianer';
+import TodoContainner from './components/TodoContianer';
+import Header from './components/Header';
 import './App.css';
 
 function App() {
@@ -14,8 +15,8 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Todo App</h1>
-      <TodoContianer todos={todos}/>
+      <Header />
+      <TodoContainner todos={todos}/>
     </div>
   );
 }

@@ -3,9 +3,9 @@ import React from 'react'
 const TodoItem = (props) => {
 
     return (
-     <li>
+     <li className="todo-item">
          <h2>{props.todo.title}</h2>
-         <p>{props.todo.content}</p>     
+         <p>{props.todo.content}</p>
      </li>
     )
 }
