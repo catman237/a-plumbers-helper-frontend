@@ -1,23 +1,21 @@
-import logo from './logo.svg';
+import { useState, useEffect } from 'react'
+import TodoContianer from './components/TodoContianer';
 import './App.css';
 
 function App() {
+  const todosURL = "http://localhost:3000/todos"
+  const [todos, setTodos] = useState([])
+
+  useEffect(() => {
+    fetch(todosURL)
+    .then(res => res.json())
+    .then(data => {setTodos(data)})
+  },[])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Todo App</h1>
+      <TodoContianer todos={todos}/>
     </div>
   );
 }
