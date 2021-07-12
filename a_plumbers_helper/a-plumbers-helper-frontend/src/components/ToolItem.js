@@ -5,7 +5,7 @@ const ToolItem = (props) => {
        <li className='item'>
            <h2>{props.tool.name}</h2>
            <h3>{props.tool.brand}</h3>
-           <p>{props.tool.use}</p>
+           <p>{`Use: ${props.tool.use}`}</p>
        </li>
     )
 }

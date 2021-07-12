@@ -10,6 +10,7 @@
   list-style-type: none;
   justify-content: space-between;
   width: 90%;
+ 
 }
 
 .item{
@@ -18,7 +19,8 @@
   align-items: center;
   justify-content: center;
   width: 12rem;
-  height: 12rem;
+  height: fit-content;
   box-shadow: 0 6px 10px;
   border-radius: 15%;
+  padding-bottom: 1rem;
 }
