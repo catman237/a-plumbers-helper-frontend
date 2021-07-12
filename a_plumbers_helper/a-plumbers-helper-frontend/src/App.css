@@ -10,7 +10,6 @@
   list-style-type: none;
   justify-content: space-between;
   width: 90%;
- 
 }
 
 .item{
@@ -23,4 +22,12 @@
   box-shadow: 0 6px 10px;
   border-radius: 15%;
   padding-bottom: 1rem;
+}
+
+.jobFormContainer {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  width: 40%;
+  margin-left: 27rem;
 }

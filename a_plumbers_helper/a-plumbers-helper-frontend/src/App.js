@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import NavBar from './components/Navbar';
 import JobsContainer from './components/JobsContainer';
 import ToolsContainer from './components/ToolsContainer';
+import JobForm from './components/JobForm';
 import './App.css';
 
 
@@ -30,6 +31,7 @@ useEffect(() => {
       <NavBar />
       <JobsContainer jobs={jobs}/>
       <ToolsContainer tools={tools}/>
+      <JobForm />
     </div>
   );
 }
