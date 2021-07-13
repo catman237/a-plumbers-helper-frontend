@@ -10,7 +10,10 @@ const JobItem = (props) => {
       </div>
       <h3>{`Cost $${props.job.price}`}</h3>
       <p className="description">{`${props.job.description}`}</p>
-      <Button className="bg-danger" id="submitButton" onClick={() => props.removeJob(props.job)}>Delete</Button>
+      <Button 
+      className="bg-danger" 
+      id="submitButton" 
+      onClick={() => props.removeJob(props.job)}>Delete</Button>
     </li>
 
   )

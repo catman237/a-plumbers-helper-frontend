@@ -77,7 +77,12 @@ const JobForm = (props) => {
                     </ToggleButton>
                 </ButtonGroup>
 
-                <Button className="submitButton" as="input" type="submit" value="Submit" onClick={() => handleSubmit()} />
+                <Button 
+                className="submitButton" 
+                as="input" 
+                type="submit" 
+                value="Submit" 
+                onClick={() => handleSubmit()} />
             </div>
 
             <div className="toolsForm">

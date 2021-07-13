@@ -38,13 +38,24 @@ const removeJob = (currentJob) => {
   fetch(deletedJob, options)
 }
 
+const removeTool = (currentTool) => {
+  console.log('clicked')
+  const updatedTools = tools.filter(tool => tool.id !== currentTool.id)
+  setTools(updatedTools)
+  const options = {
+    "method": "DELETE"
+  }
+  const deletedTool = toolsURL + currentTool.id
+  fetch(deletedTool, options)
+}
+
 
   return (
     <div className="App">
       <NavBar />
       <JobForm onSubmit={() => setStale(true)}/>
       <JobsContainer jobs={jobs} removeJob={removeJob}/>
-      <ToolsContainer tools={tools}/>
+      <ToolsContainer tools={tools} removeTool={removeTool}/>
     </div>
   );
 }

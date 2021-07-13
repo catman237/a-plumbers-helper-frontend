@@ -5,7 +5,7 @@ import ToolItem from './ToolItem'
 const ToolsContainer = (props) => {
 
     const showTools = () => {
-        return props.tools.map(tool => <ToolItem key={tool.id} tool={tool} />)
+        return props.tools.map(tool => <ToolItem key={tool.id} tool={tool} removeTool={props.removeTool}/>)
     }
 
     return (
