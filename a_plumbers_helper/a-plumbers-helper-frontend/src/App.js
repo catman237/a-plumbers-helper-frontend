@@ -8,17 +8,19 @@ import './App.css';
 
 function App() {
 
-const jobsURL = 'http://localhost:3000/jobs'
-const toolsURL = 'http://localhost:3000/tools'
+const jobsURL = 'http://localhost:3000/jobs/'
+const toolsURL = 'http://localhost:3000/tools/'
   
-const [jobs, setjobs] = useState([])
+const [jobs, setJobs] = useState([])
 const [tools, setTools] = useState([])
+const [stale, setStale] = useState(true)
 
 useEffect(() => {
   fetch(jobsURL)
   .then(res => res.json())
-  .then(jobs => setjobs(jobs))
-}, [])
+  .then(jobs => setJobs(jobs))
+  .then(setStale(false))
+}, [stale])
 
 useEffect(() => {
   fetch(toolsURL)
@@ -26,12 +28,23 @@ useEffect(() => {
   .then(tools => setTools(tools))
 }, [])
 
+const removeJob = (currentJob) => {
+  const updatedJob = jobs.filter(job => job.id !== currentJob.id)
+  setJobs(updatedJob)
+  const options = {
+    "method": "DELETE"
+  }
+  const deletedJob = jobsURL + currentJob.id
+  fetch(deletedJob, options)
+}
+
+
   return (
     <div className="App">
       <NavBar />
-      <JobsContainer jobs={jobs}/>
+      <JobForm onSubmit={() => setStale(true)}/>
+      <JobsContainer jobs={jobs} removeJob={removeJob}/>
       <ToolsContainer tools={tools}/>
-      <JobForm />
     </div>
   );
 }

@@ -3,6 +3,10 @@
   justify-content: center;
 }
 
+.submitButton {
+  margin-top: .8rem;
+}
+
 .list {
   list-style-type: none;
   display: flex;
@@ -16,7 +20,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   width: 12rem;
   height: fit-content;
   box-shadow: 0 6px 10px;
@@ -25,9 +28,59 @@
 }
 
 .jobFormContainer {
+display: flex;
+justify-content: space-around;
+margin: 4rem;
+}
+
+.jobsForm {
+  background-color: rgb(206, 206, 206);
+  border: 1px solid black;
+  border-radius: 5%;
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 23rem;
+}
+
+.toolsForm {
+  background-color: rgb(206, 206, 206);
+  border: 1px solid black;
+  border: 1px solid black;
+  border-radius: 5%;
+  height: 23rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+}
+
+.description {
+  width: 10rem;
   align-content: center;
-  width: 40%;
-  margin-left: 27rem;
+}
+
+.titleDiv {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.submitButton {
+  display: flex;
+  justify-content: center;
+  width: 5rem;
+}
+#toggle-check {
+  margin-top: .5rem;
+  width: 8rem;
+  margin-bottom: 0;
 }
