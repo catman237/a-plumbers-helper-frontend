@@ -4,9 +4,9 @@ import { Button } from 'react-bootstrap'
 const ToolItem = (props) => {
     return (
        <li className='item'>
-           <h2>{props.tool.name}</h2>
-           <h3>{props.tool.brand}</h3>
-           <p>{`Use: ${props.tool.use}`}</p>
+           <h2 className='title'>{`Name: ${props.tool.toolName}`}</h2>
+           <h3 className='brand'>{props.tool.brand}</h3>
+           <p className="description">{`Use: ${props.tool.use}`}</p>
            <Button 
            className="bg-danger" 
            id="submitButton" 

@@ -13,7 +13,7 @@ const toolsURL = 'http://localhost:3000/tools/'
   
 const [jobs, setJobs] = useState([])
 const [tools, setTools] = useState([])
-const [stale, setStale] = useState(true)
+const [stale, setStale] = useState(false)
 
 useEffect(() => {
   fetch(jobsURL)
@@ -26,7 +26,7 @@ useEffect(() => {
   fetch(toolsURL)
   .then(res => res.json())
   .then(tools => setTools(tools))
-}, [])
+}, [stale])
 
 const removeJob = (currentJob) => {
   const updatedJob = jobs.filter(job => job.id !== currentJob.id)

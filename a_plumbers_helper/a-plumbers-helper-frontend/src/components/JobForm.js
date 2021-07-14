@@ -2,30 +2,35 @@ import { useState } from 'react'
 import { InputGroup, FormControl, Button, ButtonGroup, ToggleButton } from 'react-bootstrap'
 
 const JobForm = (props) => {
-    const baseURL = "http://localhost:3000/jobs"
-
-
+    const jobsURL = "http://localhost:3000/jobs"
+    const toolsURL = "http://localhost:3000/tools"
+    
+    
     const [name, setJobName] = useState('')
     const [price, setPrice] = useState(0)
     const [description, setDescription] = useState('')
     const [done, setDone] = useState(false)
-    const [tool, setToolName] = useState('')
+    const [toolName, setToolName] = useState('')
     const [brand, setBrand] = useState('')
     const [use, setUse] = useState('')
+    
+    const bodyOfJobsReq = { job: { name, price, description, done } }
+    const bodyOfToolsReq = { tool: { toolName, brand, use} }
 
-    const handleSubmit = () => {
-        console.log('clicked submit')
+    const handle_submit = (url, body) => {
+        console.log(body, url)
         const options = {
             "method": "POST",
             "headers": {
                 "Accept": "application/json",
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ job: { name, price, description, done } })
+            body: JSON.stringify(body)
         }
-        fetch(baseURL, options)
+        fetch(url, options)
             .then(resp => resp.json())
             .then(props.onSubmit)
+            .then(console.log)
     }
 
     return (
@@ -82,7 +87,7 @@ const JobForm = (props) => {
                 as="input" 
                 type="submit" 
                 value="Submit" 
-                onClick={() => handleSubmit()} />
+                onClick={() => handle_submit(jobsURL, bodyOfJobsReq)} />
             </div>
 
             <div className="toolsForm">
@@ -123,7 +128,11 @@ const JobForm = (props) => {
                 </InputGroup>
 
 
-                <Button className="submitButton" as="input" type="submit" value="Submit" onClick={() => handleSubmit()} />
+                <Button 
+                className="submitButton" 
+                as="input" type="submit" 
+                value="Submit" 
+                onClick={() => handle_submit(toolsURL, bodyOfToolsReq)} />
             </div>
         </div>
     )
