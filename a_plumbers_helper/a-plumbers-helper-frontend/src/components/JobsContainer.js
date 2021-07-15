@@ -4,7 +4,7 @@ import JobItem from './JobItem'
 const JobsContainer = (props) => {
 
 const showJobs = () => {
-    return props.jobs.map(job => <JobItem key={job.id} job={job} removeJob={props.removeJob}/> )
+    return props.jobs.map(job => <JobItem key={job.id} job={job} removeJob={props.removeJob} completeJob={props.completeJob}/> )
 }
 
     return (

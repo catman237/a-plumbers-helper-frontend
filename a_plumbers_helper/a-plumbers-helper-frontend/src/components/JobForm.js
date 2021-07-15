@@ -1,26 +1,26 @@
 import { useState } from 'react'
-import { InputGroup, FormControl, Button, ButtonGroup, ToggleButton } from 'react-bootstrap'
+import { InputGroup, FormControl, Button, ButtonGroup, FormCheck } from 'react-bootstrap'
 
 const JobForm = (props) => {
     const jobsURL = "http://localhost:3000/jobs"
     const toolsURL = "http://localhost:3000/tools"
-    
-    
+
+
     const [name, setJobName] = useState('')
     const [price, setPrice] = useState(0)
     const [description, setDescription] = useState('')
     const [done, setDone] = useState(false)
-    const [toolName, setToolName] = useState('')
+    const [tool_name, setToolName] = useState('')
     const [brand, setBrand] = useState('')
     const [use, setUse] = useState('')
-    
-    const bodyOfJobsReq = { job: { name, price, description, done } }
-    const bodyOfToolsReq = { tool: { toolName, brand, use} }
 
-    const handle_submit = (url, body) => {
-        console.log(body, url)
+    const bodyOfJobsReq = { job: { name, price, description, done } }
+    const bodyOfToolsReq = { tool: { tool_name, brand, use } }
+    const post = "POST"
+
+    const handle_submit = (url, body, method) => {
         const options = {
-            "method": "POST",
+            "method": method,
             "headers": {
                 "Accept": "application/json",
                 "Content-Type": "application/json"
@@ -30,7 +30,6 @@ const JobForm = (props) => {
         fetch(url, options)
             .then(resp => resp.json())
             .then(props.onSubmit)
-            .then(console.log)
     }
 
     return (
@@ -69,25 +68,14 @@ const JobForm = (props) => {
                         onChange={(e) => setDescription(e.target.value)} />
                 </InputGroup>
 
-                <ButtonGroup className="mb-2">
-                    <ToggleButton
-                        id="toggle-check"
-                        type="checkbox"
-                        variant="secondary"
-                        checked={done}
-                        value="done"
-                        onChange={(e) => setDone(e.target.checked)}
-                    >
-                        Done
-                    </ToggleButton>
-                </ButtonGroup>
+         
 
-                <Button 
-                className="submitButton" 
-                as="input" 
-                type="submit" 
-                value="Submit" 
-                onClick={() => handle_submit(jobsURL, bodyOfJobsReq)} />
+                <Button
+                    className="submitButton"
+                    as="input"
+                    type="submit"
+                    value="Submit"
+                    onClick={() => handle_submit(jobsURL, bodyOfJobsReq, post)} />
             </div>
 
             <div className="toolsForm">
@@ -111,7 +99,7 @@ const JobForm = (props) => {
                         <InputGroup.Text id="basic-addon1">Brand</InputGroup.Text>
                     </InputGroup.Prepend>
                     <FormControl
-                        aria-label="JobName"
+                        aria-label="brand"
                         aria-describedby="basic-addon1"
                         onChange={(e) => setBrand(e.target.value)}
                     />
@@ -128,11 +116,11 @@ const JobForm = (props) => {
                 </InputGroup>
 
 
-                <Button 
-                className="submitButton" 
-                as="input" type="submit" 
-                value="Submit" 
-                onClick={() => handle_submit(toolsURL, bodyOfToolsReq)} />
+                <Button
+                    className="submitButton"
+                    as="input" type="submit"
+                    value="Submit"
+                    onClick={() => handle_submit(toolsURL, bodyOfToolsReq, post)} />
             </div>
         </div>
     )

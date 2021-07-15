@@ -3,6 +3,7 @@ import NavBar from './components/Navbar';
 import JobsContainer from './components/JobsContainer';
 import ToolsContainer from './components/ToolsContainer';
 import JobForm from './components/JobForm';
+import Footer from './components/Footer';
 import './App.css';
 
 
@@ -14,6 +15,7 @@ const toolsURL = 'http://localhost:3000/tools/'
 const [jobs, setJobs] = useState([])
 const [tools, setTools] = useState([])
 const [stale, setStale] = useState(false)
+const [completedJobs, setCompletedJobs] = useState(0)
 
 useEffect(() => {
   fetch(jobsURL)
@@ -38,8 +40,20 @@ const removeJob = (currentJob) => {
   fetch(deletedJob, options)
 }
 
+const completeJob = (currentJob) => {
+  const newCompletedJobs = completedJobs + 1
+  setCompletedJobs(newCompletedJobs)
+  const updatedJob = jobs.filter(job => job.id !== currentJob.id)
+  setJobs(updatedJob)
+  const options = {
+    "method": "DELETE"
+  }
+  const deletedJob = jobsURL + currentJob.id
+  fetch(deletedJob, options)
+}
+
+
 const removeTool = (currentTool) => {
-  console.log('clicked')
   const updatedTools = tools.filter(tool => tool.id !== currentTool.id)
   setTools(updatedTools)
   const options = {
@@ -50,12 +64,16 @@ const removeTool = (currentTool) => {
 }
 
 
+
+
+
   return (
     <div className="App">
       <NavBar />
       <JobForm onSubmit={() => setStale(true)}/>
-      <JobsContainer jobs={jobs} removeJob={removeJob}/>
+      <JobsContainer jobs={jobs} removeJob={removeJob} completeJob={completeJob}/>
       <ToolsContainer tools={tools} removeTool={removeTool}/>
+      <Footer />
     </div>
   );
 }

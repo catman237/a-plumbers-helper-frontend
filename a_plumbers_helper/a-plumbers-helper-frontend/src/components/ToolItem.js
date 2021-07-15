@@ -4,7 +4,7 @@ import { Button } from 'react-bootstrap'
 const ToolItem = (props) => {
     return (
        <li className='item'>
-           <h2 className='title'>{`Name: ${props.tool.toolName}`}</h2>
+           <h2 className='title'>{`Name: ${props.tool.tool_name}`}</h2>
            <h3 className='brand'>{props.tool.brand}</h3>
            <p className="description">{`Use: ${props.tool.use}`}</p>
            <Button 
