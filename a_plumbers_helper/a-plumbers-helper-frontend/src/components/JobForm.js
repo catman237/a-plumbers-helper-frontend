@@ -1,15 +1,14 @@
 import { useState } from 'react'
-import { InputGroup, FormControl, Button, ButtonGroup, FormCheck } from 'react-bootstrap'
+import { InputGroup, FormControl, Button } from 'react-bootstrap'
 
 const JobForm = (props) => {
     const jobsURL = "http://localhost:3000/jobs"
     const toolsURL = "http://localhost:3000/tools"
 
-
     const [name, setJobName] = useState('')
     const [price, setPrice] = useState(0)
-    const [description, setDescription] = useState('')
     const [done, setDone] = useState(false)
+    const [description, setDescription] = useState('')
     const [tool_name, setToolName] = useState('')
     const [brand, setBrand] = useState('')
     const [use, setUse] = useState('')
@@ -18,7 +17,19 @@ const JobForm = (props) => {
     const bodyOfToolsReq = { tool: { tool_name, brand, use } }
     const post = "POST"
 
-    const handle_submit = (url, body, method) => {
+    const jobCallBack = () => {
+        setJobName('')
+        setPrice(0)
+        setDescription('')
+    }
+
+    const toolCallBack = () => {
+        setToolName('')
+        setBrand('')
+        setUse('')
+    }
+
+    const handle_submit = (url, body, method, callBack) => {
         const options = {
             "method": method,
             "headers": {
@@ -30,6 +41,7 @@ const JobForm = (props) => {
         fetch(url, options)
             .then(resp => resp.json())
             .then(props.onSubmit)
+            .then(callBack)
     }
 
     return (
@@ -48,6 +60,7 @@ const JobForm = (props) => {
                         aria-label="JobName"
                         aria-describedby="basic-addon1"
                         onChange={(e) => setJobName(e.target.value)}
+                        value={name}
                     />
                 </InputGroup>
 
@@ -55,7 +68,10 @@ const JobForm = (props) => {
                     <InputGroup.Prepend>
                         <InputGroup.Text>$</InputGroup.Text>
                     </InputGroup.Prepend>
-                    <FormControl aria-label="Amount (to the nearest dollar)" onChange={(e) => setPrice(e.target.value)} />
+                    <FormControl
+                        aria-label="Amount (to the nearest dollar)"
+                        onChange={(e) => setPrice(e.target.value)}
+                        value={price} />
                 </InputGroup>
 
                 <InputGroup>
@@ -65,17 +81,17 @@ const JobForm = (props) => {
                     <FormControl
                         as="textarea"
                         aria-label="With textarea"
-                        onChange={(e) => setDescription(e.target.value)} />
+                        onChange={(e) => setDescription(e.target.value)}
+                        value={description} />
                 </InputGroup>
-
-         
 
                 <Button
                     className="submitButton"
                     as="input"
                     type="submit"
                     value="Submit"
-                    onClick={() => handle_submit(jobsURL, bodyOfJobsReq, post)} />
+                    onClick={() => handle_submit(jobsURL,bodyOfJobsReq,post, jobCallBack())}
+                />
             </div>
 
             <div className="toolsForm">
@@ -91,6 +107,7 @@ const JobForm = (props) => {
                         aria-label="JobName"
                         aria-describedby="basic-addon1"
                         onChange={(e) => setToolName(e.target.value)}
+                        value={tool_name}
                     />
                 </InputGroup>
 
@@ -102,6 +119,7 @@ const JobForm = (props) => {
                         aria-label="brand"
                         aria-describedby="basic-addon1"
                         onChange={(e) => setBrand(e.target.value)}
+                        value={brand}
                     />
                 </InputGroup>
 
@@ -112,7 +130,8 @@ const JobForm = (props) => {
                     <FormControl
                         as="textarea"
                         aria-label="With textarea"
-                        onChange={(e) => setUse(e.target.value)} />
+                        onChange={(e) => setUse(e.target.value)}
+                        value={use} />
                 </InputGroup>
 
 
@@ -120,7 +139,8 @@ const JobForm = (props) => {
                     className="submitButton"
                     as="input" type="submit"
                     value="Submit"
-                    onClick={() => handle_submit(toolsURL, bodyOfToolsReq, post)} />
+                    onClick={() => handle_submit(toolsURL, bodyOfToolsReq, post, toolCallBack())}
+                />
             </div>
         </div>
     )

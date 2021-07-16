@@ -10,7 +10,7 @@
 
 .headerContainer {
   display: flex;
-  justify-content: left;
+  justify-content: center;
   align-items: center;
   background-image:radial-gradient(white, grey);
   height: 5rem;
@@ -21,13 +21,41 @@
   margin-top: .8rem;
 }
 
-.list {
+.containers {
+  display: flex;
+  flex-direction: row;
+
+}
+
+.jobs {
+  display: flex;
+  flex-direction: flex-start;
+  height: fit-content;
+  width: 50%;
+}
+
+.job-list {
   list-style-type: none;
   display: flex;
   flex-flow: row wrap;
   list-style-type: none;
   justify-content: space-between;
-  width: 90%;
+}
+
+.tools {
+  display: flex;
+  justify-content: flex-end;
+  height: fit-content;
+  width: 50%;
+}
+
+.tool-list {
+  list-style-type: none;
+  display: flex;
+  flex-flow: row wrap;
+  list-style-type: none;
+  justify-content: space-between;
+  
 }
 
 .flipCard {
@@ -79,7 +107,7 @@
   box-shadow: 0 6px 10px;
   border-radius: 15%;
   padding-bottom: 1rem;
-  margin-top: 1rem;
+  margin: 1rem;
   background: rgba( 255, 255, 255, .35 );
   box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.50 );
   backdrop-filter: blur( 4px );
@@ -162,6 +190,16 @@ margin: 4rem;
   display: flex;
   justify-content: center;
   width: 5rem;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-around;
+  height: 5rem;
+}
+
+.showButton {
+  height: 2.5rem;
 }
 
 #toggle-check {

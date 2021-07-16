@@ -2,10 +2,11 @@ import { useState, useEffect } from 'react';
 import NavBar from './components/Navbar';
 import JobsContainer from './components/JobsContainer';
 import ToolsContainer from './components/ToolsContainer';
+import ButtonContainer from './components/ButtonContainer';
 import JobForm from './components/JobForm';
 import Footer from './components/Footer';
+import { Button } from 'react-bootstrap'
 import './App.css';
-
 
 function App() {
 
@@ -16,6 +17,8 @@ const [jobs, setJobs] = useState([])
 const [tools, setTools] = useState([])
 const [stale, setStale] = useState(false)
 const [completedJobs, setCompletedJobs] = useState(0)
+const [showJobs, setShowJobs] = useState(false)
+const [showTools, setShowTools] = useState(false)
 
 useEffect(() => {
   fetch(jobsURL)
@@ -52,7 +55,6 @@ const completeJob = (currentJob) => {
   fetch(deletedJob, options)
 }
 
-
 const removeTool = (currentTool) => {
   const updatedTools = tools.filter(tool => tool.id !== currentTool.id)
   setTools(updatedTools)
@@ -63,16 +65,19 @@ const removeTool = (currentTool) => {
   fetch(deletedTool, options)
 }
 
+const toggleJobs = () => { setShowJobs(!showJobs)}
 
-
-
+const toggleTools = () => { setShowTools(!showTools)}
 
   return (
     <div className="App">
       <NavBar />
       <JobForm onSubmit={() => setStale(true)}/>
-      <JobsContainer jobs={jobs} removeJob={removeJob} completeJob={completeJob}/>
-      <ToolsContainer tools={tools} removeTool={removeTool}/>
+      <ButtonContainer toggleJobs={toggleJobs} toggleTools={toggleTools}/>
+      <div className='containers'>
+      {showJobs ? <JobsContainer jobs={jobs} removeJob={removeJob} completeJob={completeJob}/> : null}
+      {showTools ? <ToolsContainer tools={tools} removeTool={removeTool}/> : null }
+      </div>
       <Footer />
     </div>
   );

@@ -6,16 +6,16 @@ const JobItem = (props) => {
   return (
     <div>
       <li className='item'>
-          <h2 className='title'>{props.job.name}</h2>
+        <h2 className='title'>{props.job.name}</h2>
         <h3 className='price'>{`Cost $${props.job.price}`}</h3>
         <p className="description">{`${props.job.description}`}</p>
         <Button
           className="bg-danger"
           onClick={() => props.removeJob(props.job)}>Cancel</Button>
-          <Button
+        <Button
           className="bg-success m-1"
           onClick={() => props.completeJob(props.job)}
-          >Completed</Button>
+        >Completed</Button>
       </li>
     </div>
   )
